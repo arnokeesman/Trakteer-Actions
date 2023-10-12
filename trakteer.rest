@@ -1,0 +1,2 @@
+GET https://api.trakteer.id/v1/public/supports?limit=10
+key: {{$dotenv TRAKTEER_API_KEY}}
