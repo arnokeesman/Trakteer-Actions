@@ -16,3 +16,6 @@ To set the value of a config option run `/trakteer-functions <optionName> <value
 | apiKey      | string            | none          | The API key to access Trakteer API |
 | interval    | integer (seconds) | 0 (disabled)  | Interval in seconds for polling    |
 | mode        | test\|real        | test          | Specifies which API to connect to  |
+
+## Testing API
+The testing API can be found in the [testing-api branch](https://github.com/arnokeesman/Trakteer-Functions/tree/testing-api)
