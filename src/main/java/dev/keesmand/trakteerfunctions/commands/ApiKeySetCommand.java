@@ -25,7 +25,7 @@ public class ApiKeySetCommand implements Command<ServerCommandSource> {
             } else {
                 message = "Invalid API configuration: " + ioe.getMessage();
             }
-            message += "\nNot setting API key.";
+            message += "\nClearing API key.";
             context.getSource().sendError(Text.of(message));
             try { TrakteerFunctions.CONFIG.setApiKey(""); } catch (IOException ignored) {}
             return 0;

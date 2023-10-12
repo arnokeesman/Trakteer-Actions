@@ -32,8 +32,11 @@ public class TrakteerFunctionsConfig extends PersistentState {
         this.apiKey = apiKey;
         markDirty();
 
-        if (isValid()) TrakteerFunctions.clearKnowTimestamps();
-        else TrakteerFunctions.initializeDonations();
+        if (isValid()) {
+            TrakteerFunctions.initializeDonations();
+        } else {
+            TrakteerFunctions.clearKnowTimestamps();
+        }
     }
 
     public int getInterval() {
@@ -41,11 +44,15 @@ public class TrakteerFunctionsConfig extends PersistentState {
     }
 
     public void setInterval(int interval) throws IOException {
+        boolean wasValid = isValid();
         this.interval = interval;
         markDirty();
 
-        if (isValid()) TrakteerFunctions.clearKnowTimestamps();
-        else TrakteerFunctions.initializeDonations();
+        if (isValid()) {
+            if (!wasValid) TrakteerFunctions.initializeDonations();
+        } else {
+            TrakteerFunctions.clearKnowTimestamps();
+        }
     }
 
     public OperationMode getMode() {
