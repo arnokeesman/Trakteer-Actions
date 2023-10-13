@@ -10,11 +10,12 @@ public class TrakteerFunctionsCommand {
     public static LiteralCommandNode<ServerCommandSource> register() {
         LiteralCommandNode<ServerCommandSource> baseNode = CommandManager
                 .literal("trakteer-functions")
-                .requires(ctx -> ctx.hasPermissionLevel(4))
+                .executes(new InfoCommand())
                 .build();
 
         LiteralCommandNode<ServerCommandSource> intervalNode = CommandManager
                 .literal("interval")
+                .requires(ctx -> ctx.hasPermissionLevel(4))
                 .executes(new IntervalGetCommand())
                 .then(CommandManager.argument("interval", IntegerArgumentType.integer())
                         .executes(new IntervalSetCommand())
@@ -23,6 +24,7 @@ public class TrakteerFunctionsCommand {
 
         LiteralCommandNode<ServerCommandSource> apiKeyNode = CommandManager
                 .literal("apiKey")
+                .requires(ctx -> ctx.hasPermissionLevel(4))
                 .executes(new ApiKeyGetCommand())
                 .then(CommandManager.argument("api_key", StringArgumentType.word())
                         .executes(new ApiKeySetCommand())
@@ -31,6 +33,7 @@ public class TrakteerFunctionsCommand {
 
         LiteralCommandNode<ServerCommandSource> modeNode = CommandManager
                 .literal("mode")
+                .requires(ctx -> ctx.hasPermissionLevel(4))
                 .executes(new ModeGetCommand())
                 .then(CommandManager.argument("mode", StringArgumentType.word())
                         .suggests(new ModeSetCommand())
