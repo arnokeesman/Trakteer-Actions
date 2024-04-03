@@ -3,6 +3,7 @@ package dev.keesmand.trakteerfunctions.config;
 import dev.keesmand.trakteerfunctions.model.OperationMode;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
+import net.minecraft.nbt.NbtSizeTracker;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.WorldSavePath;
 
@@ -17,7 +18,7 @@ public class TrakteerFunctionsConfigManager {
         File saveFile = getSettingsFile(server);
         if (Files.exists(saveFile.toPath()) && saveFile.length() != 0) {
             try {
-                NbtCompound nbtCompound = NbtIo.readCompressed(new FileInputStream(saveFile));
+                NbtCompound nbtCompound = NbtIo.readCompressed(new FileInputStream(saveFile), NbtSizeTracker.ofUnlimitedBytes());
                 return TrakteerFunctionsConfig.fromNbt(nbtCompound.getCompound("data"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
