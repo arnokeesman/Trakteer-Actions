@@ -9,10 +9,12 @@ import net.minecraft.text.Text;
 public class IntervalGetCommand implements Command<ServerCommandSource> {
     @Override
     public int run(CommandContext<ServerCommandSource> context) {
-        int interval = TrakteerFunctions.CONFIG.getInterval();
+        int interval = TrakteerFunctions.OPERATION_CONFIG.getInterval();
+
         context.getSource().sendFeedback(
                 () -> Text.of(interval <= 0 ? "Interval is disabled" : String.format("Interval is %ds", interval)),
                 false);
-        return 1;
+
+        return SINGLE_SUCCESS;
     }
 }

@@ -13,21 +13,17 @@ public class TrakteerFunctionsCommand {
                 .executes(new InfoCommand())
                 .build();
 
+        LiteralCommandNode<ServerCommandSource> statusNode = CommandManager
+                .literal("status")
+                .executes(new StatusCommand())
+                .build();
+
         LiteralCommandNode<ServerCommandSource> intervalNode = CommandManager
                 .literal("interval")
                 .requires(ctx -> ctx.hasPermissionLevel(4))
                 .executes(new IntervalGetCommand())
                 .then(CommandManager.argument("interval", IntegerArgumentType.integer())
                         .executes(new IntervalSetCommand())
-                )
-                .build();
-
-        LiteralCommandNode<ServerCommandSource> apiKeyNode = CommandManager
-                .literal("apiKey")
-                .requires(ctx -> ctx.hasPermissionLevel(4))
-                .executes(new ApiKeyGetCommand())
-                .then(CommandManager.argument("api_key", StringArgumentType.word())
-                        .executes(new ApiKeySetCommand())
                 )
                 .build();
 
@@ -41,9 +37,30 @@ public class TrakteerFunctionsCommand {
                 )
                 .build();
 
+        LiteralCommandNode<ServerCommandSource> apiKeyNode = CommandManager
+                .literal("apiKey")
+                .executes(new ApiKeyGetCommand())
+                .then(CommandManager.argument("api_key", StringArgumentType.word())
+                        .executes(new ApiKeySetCommand())
+                )
+                .build();
+
+        LiteralCommandNode<ServerCommandSource> enableNode = CommandManager
+                .literal("enable")
+                .executes(new EnableCommand())
+                .build();
+
+        LiteralCommandNode<ServerCommandSource> disableNode = CommandManager
+                .literal("disable")
+                .executes(new DisableCommand())
+                .build();
+
+        baseNode.addChild(statusNode);
         baseNode.addChild(intervalNode);
-        baseNode.addChild(apiKeyNode);
         baseNode.addChild(modeNode);
+        baseNode.addChild(apiKeyNode);
+        baseNode.addChild(enableNode);
+        baseNode.addChild(disableNode);
 
         return baseNode;
     }

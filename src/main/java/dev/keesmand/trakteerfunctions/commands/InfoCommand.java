@@ -9,14 +9,16 @@ import net.minecraft.text.Text;
 public class InfoCommand implements Command<ServerCommandSource> {
     @Override
     public int run(CommandContext<ServerCommandSource> context) {
-        context.getSource().sendFeedback(() -> Text.of("Running Trakteer Functions v"+TrakteerFunctions.MOD_METADATA.getVersion().getFriendlyString()), false);
-        if (context.getSource().hasPermissionLevel(4)) {
-            boolean valid = TrakteerFunctions.CONFIG.isValid();
-            context.getSource().sendFeedback(
-                    () -> Text.of(valid ? "Polling is active" : "Config is not valid"),
-                    false);
+        context.getSource().sendFeedback(() -> Text.of(String.format("Running Trakteer Functions v%s",
+                TrakteerFunctions.MOD_METADATA.getVersion().getFriendlyString())), false);
 
+        if (context.getSource().hasPermissionLevel(4)) {
+            int activeUsers = TrakteerFunctions.OPERATION_CONFIG.getReadyUserSettings().size();
+            context.getSource().sendFeedback(
+                    () -> Text.of(String.format("Polling for %d users", activeUsers)),
+                    false);
         }
-        return 1;
+
+        return SINGLE_SUCCESS;
     }
 }
