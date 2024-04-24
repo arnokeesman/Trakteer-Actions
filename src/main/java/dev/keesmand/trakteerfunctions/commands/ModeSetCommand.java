@@ -6,6 +6,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
+import dev.keesmand.trakteerfunctions.TrakteerFunctions;
 import dev.keesmand.trakteerfunctions.model.OperationMode;
 import net.minecraft.command.CommandSource;
 import net.minecraft.server.command.ServerCommandSource;
@@ -27,9 +28,11 @@ public class ModeSetCommand implements Command<ServerCommandSource>, SuggestionP
 
         OperationMode mode = OperationMode.valueOf(value);
 
+        context.getSource().sendFeedback(() -> Text.of("Changing mode..."), false);
+
         OPERATION_CONFIG.setMode(mode);
 
-        context.getSource().sendFeedback(() -> Text.of(String.format("Set mode to %s", mode.name())), false);
+        context.getSource().sendFeedback(() -> Text.of(String.format("%sSet mode to %s", TrakteerFunctions.logPrefix, mode.name())), true);
         return SINGLE_SUCCESS;
     }
 

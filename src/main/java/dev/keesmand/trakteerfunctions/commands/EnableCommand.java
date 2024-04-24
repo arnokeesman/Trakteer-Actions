@@ -18,6 +18,11 @@ public class EnableCommand implements Command<ServerCommandSource> {
         }
 
         boolean verified = OPERATION_CONFIG.isVerified(player);
+        if (!OPERATION_CONFIG.getApiKey(player).isEmpty() && !verified) {
+            context.getSource().sendFeedback(() -> Text.of("Verifying API key..."), false);
+            verified = OPERATION_CONFIG.verify(player);
+        }
+
         if (!verified) {
             context.getSource().sendError(Text.of("Set your API key first"));
             return 0;

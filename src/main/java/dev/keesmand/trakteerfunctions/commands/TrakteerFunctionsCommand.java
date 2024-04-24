@@ -55,12 +55,19 @@ public class TrakteerFunctionsCommand {
                 .executes(new DisableCommand())
                 .build();
 
+        LiteralCommandNode<ServerCommandSource> reloadNode = CommandManager
+                .literal("reload")
+                .requires(ctx -> ctx.hasPermissionLevel(4))
+                .executes(new ReloadCommand())
+                .build();
+
         baseNode.addChild(statusNode);
         baseNode.addChild(intervalNode);
         baseNode.addChild(modeNode);
         baseNode.addChild(apiKeyNode);
         baseNode.addChild(enableNode);
         baseNode.addChild(disableNode);
+        baseNode.addChild(reloadNode);
 
         return baseNode;
     }

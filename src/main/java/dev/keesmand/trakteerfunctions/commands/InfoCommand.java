@@ -15,7 +15,10 @@ public class InfoCommand implements Command<ServerCommandSource> {
         if (context.getSource().hasPermissionLevel(4)) {
             int activeUsers = TrakteerFunctions.OPERATION_CONFIG.getReadyUserSettings().size();
             context.getSource().sendFeedback(
-                    () -> Text.of(String.format("Polling for %d users", activeUsers)),
+                    () -> Text.of(TrakteerFunctions.isObstructed()
+                                    ? "Mod disabled due to bad config."
+                                    : String.format("Polling for %d users", activeUsers)
+                            ),
                     false);
         }
 

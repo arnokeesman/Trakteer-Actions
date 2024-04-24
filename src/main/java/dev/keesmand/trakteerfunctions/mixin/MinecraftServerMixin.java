@@ -82,7 +82,7 @@ public abstract class MinecraftServerMixin {
     @SuppressWarnings("UnreachableCode")
     @Inject(method = "tick", at = @At("TAIL"))
     void onTick(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
-        if (!TrakteerFunctions.modEnabled) return;
+        if (TrakteerFunctions.isObstructed()) return;
         MinecraftServer server = (MinecraftServer) (Object) this;
 
         UserSettings userSettings = getUserToCheck(server);
@@ -105,7 +105,7 @@ public abstract class MinecraftServerMixin {
 
                     ServerPlayerEntity player = getPlayerManager().getPlayer(gameProfile.getId());
                     if (player != null) {
-                        player.sendMessage(Text.literal("[Trakteer Functions] API key no longer valid, removing...").formatted(Formatting.RED));
+                        player.sendMessage(Text.literal(TrakteerFunctions.logPrefix + "API key no longer valid, removing...").formatted(Formatting.RED));
                     }
 
                     try {

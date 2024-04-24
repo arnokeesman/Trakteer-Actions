@@ -26,11 +26,14 @@ public class TrakteerFunctions implements ModInitializer {
             .map(ModContainer::getMetadata).orElse(null);
     public static final String MOD_ID = MOD_METADATA != null ? MOD_METADATA.getId() : "trakteer-functions | I guess, couldn't find it";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-    private static final String logPrefix = "[" + (MOD_METADATA != null ? MOD_METADATA.getName() : MOD_CONTAINER_ID) + "] ";
-    public static ActionConfig ACTION_CONFIG;
-    public static OperationConfig OPERATION_CONFIG;
+    public static final String logPrefix = "[" + (MOD_METADATA != null ? MOD_METADATA.getName() : MOD_CONTAINER_ID) + "] ";
+    public static ActionConfig ACTION_CONFIG = null;
+    public static OperationConfig OPERATION_CONFIG = null;
     public static Map<UUID, Set<String>> knownTimestamps;
-    public static boolean modEnabled = false;
+
+    public static boolean isObstructed() {
+        return ACTION_CONFIG == null || OPERATION_CONFIG == null;
+    }
 
     public static void initializeDonations() {
         knownTimestamps = new HashMap<>();
@@ -61,13 +64,11 @@ public class TrakteerFunctions implements ModInitializer {
                 ACTION_CONFIG = ConfigManager.readActionConfig();
                 OPERATION_CONFIG = ConfigManager.readOperationConfig(server);
                 log("Configurations loaded");
-                modEnabled = true;
             } catch (Exception e) {
                 error("Failed to load configs:\n" + e);
-                modEnabled = false;
             }
 
-            if (!modEnabled) return;
+            if (isObstructed()) return;
 
             initializeDonations();
 
@@ -76,8 +77,8 @@ public class TrakteerFunctions implements ModInitializer {
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             ServerPlayerEntity player = handler.getPlayer();
-            if (!modEnabled && player.hasPermissionLevel(4)) {
-                player.sendMessage(Text.literal("[Trakteer Functions] actions config invalid, mod disabled.")
+            if (isObstructed() && player.hasPermissionLevel(4)) {
+                player.sendMessage(Text.literal(TrakteerFunctions.logPrefix + "actions config invalid, mod disabled.")
                         .formatted(Formatting.RED), false);
                 return;
             }
@@ -86,11 +87,11 @@ public class TrakteerFunctions implements ModInitializer {
             boolean enabled = OPERATION_CONFIG.isEnabled(player);
 
             if (apiKeySet && !enabled) {
-                player.sendMessage(Text.of("[Trakteer Functions] you have an API key set, be sure to enable " +
+                player.sendMessage(Text.of(TrakteerFunctions.logPrefix + "you have an API key set, be sure to enable " +
                         "polling if you want to run actions from donations. Remove your API key to disable this message."));
             }
             if (!apiKeySet && enabled) {
-                player.sendMessage(Text.of("[Trakteer Functions] Polling is enabled but API key is missing, " +
+                player.sendMessage(Text.of(TrakteerFunctions.logPrefix + "Polling is enabled but API key is missing, " +
                         "please set your new API key."));
             }
         });
