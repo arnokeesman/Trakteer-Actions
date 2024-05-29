@@ -1,0 +1,63 @@
+{
+  "default": {
+    "commands": [
+      "function {supporter_name}.mcfunction",
+      "say {supporter_name} donated {amount}",
+      "something else"
+    ],
+    "exclude_default": true
+  },
+  "custom": [
+    {
+      "donation_predicates": [
+        {
+          "type": "donation:includes",
+          "key": "supporter_name",
+          "pattern": "bert"
+        },
+        {
+          "type": "donation:"
+        }
+      ],
+      "minecraft_predicate": {
+        "type": "all",
+        "values": [
+          {
+            "type": "equals",
+            "value_1": {
+              "type": "placeholder",
+              "placeholder": "donation:supporter_name"
+            },
+            "value_2": "bert"
+          },
+          {
+            "type": "equals",
+            "value_1": {
+              "type": "placeholder",
+              "placeholder": "donation:amount"
+            },
+            "value_2": "5000"
+          }
+        ]
+      },
+      "commands": [
+        "say {supporter_name} donated {amount} and is a legend"
+      ],
+      "exclude_default": false
+    },
+    {
+      "requires": {
+        "type": "equals",
+        "value_1": {
+          "type": "placeholder",
+          "placeholder": "donation:supporter_name"
+        },
+        "value_2": "hans"
+      },
+      "commands": [
+        "say {supporter_name} donated {amount}",
+        "summon dragon"
+      ]
+    }
+  ]
+}
