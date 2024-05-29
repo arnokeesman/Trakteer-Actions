@@ -1,6 +1,6 @@
 # Trakteer Functions
 
-[Bahasa Indonesia](https://github.com/arnokeesman/trakteer-functions/blob/main/README-id_ID.md)
+[Bahasa Indonesia](https://github.com/arnokeesman/Trakteer-Actions/blob/main/README-id_ID.md)
 
 Trakteer Functions is a Fabric mod designed to integrate Trakteer donations with your Minecraft world or server. This
 mod allows players to create interactive and engaging experiences based on real-time donations from the Trakteer
@@ -127,4 +127,4 @@ To test the mod without needing real donation there's also a mock API for testin
 You can run this on your own computer, to try Action configurations in singleplayer.  
 Detailed explanation can be found in the README of the testing API.
 The testing API can be found in
-the [testing-api branch](https://github.com/arnokeesman/Trakteer-Functions/tree/testing-api)
+the [testing-api branch](https://github.com/arnokeesman/Trakteer-Actions/tree/testing-api)
