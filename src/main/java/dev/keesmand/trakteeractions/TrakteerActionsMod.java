@@ -29,6 +29,7 @@ public class TrakteerActionsMod implements ModInitializer {
     public static final String logPrefix = "[" + (MOD_METADATA != null ? MOD_METADATA.getName() : MOD_CONTAINER_ID) + "] ";
     public static ActionConfig ACTION_CONFIG = null;
     public static OperationConfig OPERATION_CONFIG = null;
+    public static List<String> COMMAND_QUEUE = new ArrayList<>();
     public static Map<UUID, Set<String>> knownTimestamps;
 
     public static boolean isObstructed() {

@@ -11,6 +11,7 @@ import net.minecraft.server.PlayerManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.world.GameRules;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,6 +29,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.function.BooleanSupplier;
 
+import static dev.keesmand.trakteeractions.TrakteerActionsMod.COMMAND_QUEUE;
 import static dev.keesmand.trakteeractions.TrakteerActionsMod.OPERATION_CONFIG;
 
 @Mixin(MinecraftServer.class)
@@ -85,6 +87,8 @@ public abstract class MinecraftServerMixin {
         if (TrakteerActionsMod.isObstructed()) return;
         MinecraftServer server = (MinecraftServer) (Object) this;
 
+        executeCommands(server);
+
         UserSettings userSettings = getUserToCheck(server);
         if (userSettings == null) return;
 
@@ -119,6 +123,22 @@ public abstract class MinecraftServerMixin {
                         .filter(donation -> TrakteerActionsMod.knownTimestamps.get(userSettings.uuid).add(donation.updated_at))
                         .forEach(donation -> Game.handleDonation(server, donation));
             });
+        }
+    }
+
+    @Unique
+    private static void executeCommands(MinecraftServer server) {
+        if (!COMMAND_QUEUE.isEmpty()) {
+            GameRules.BooleanRule gameRule = server.getGameRules().get(GameRules.SEND_COMMAND_FEEDBACK);
+            boolean sendCommandFeedback = gameRule.get();
+
+            if (sendCommandFeedback) gameRule.set(false, server);
+            for (String command : COMMAND_QUEUE) {
+                server.getCommandManager().executeWithPrefix(server.getCommandSource(), command);
+            }
+            if (sendCommandFeedback) gameRule.set(true, server);
+
+            COMMAND_QUEUE.clear();
         }
     }
 }

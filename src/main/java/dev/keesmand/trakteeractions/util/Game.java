@@ -8,21 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dev.keesmand.trakteeractions.TrakteerActionsMod.ACTION_CONFIG;
+import static dev.keesmand.trakteeractions.TrakteerActionsMod.COMMAND_QUEUE;
 
 public class Game {
     public static void handleDonation(MinecraftServer server, Donation donation) {
         Action action = ACTION_CONFIG.getActionForDonation(donation);
         boolean offline = server.getPlayerManager().getPlayer(donation.receiver) == null;
 
-        handleAction(server, donation, action, offline);
+        handleAction(donation, action, offline);
     }
 
-    private static void handleAction(MinecraftServer server, Donation donation, Action action, boolean offline) {
+    private static void handleAction(Donation donation, Action action, boolean offline) {
         List<Action> actions = new ArrayList<>();
         addChildren(actions, action);
 
         for (Action a : actions) {
-            runCommands(server, donation, a, offline);
+            runCommands(donation, a, offline);
         }
     }
 
@@ -35,11 +36,11 @@ public class Game {
         }
     }
 
-    private static void runCommands(MinecraftServer server, Donation donation, Action action, boolean offline) {
+    private static void runCommands(Donation donation, Action action, boolean offline) {
         if (!offline || action.offline) {
             for (String command : action.commands) {
                 String parsedCommand = donation.parseString(command);
-                server.getCommandManager().executeWithPrefix(server.getCommandSource(), parsedCommand);
+                COMMAND_QUEUE.add(parsedCommand);
             }
         }
     }
