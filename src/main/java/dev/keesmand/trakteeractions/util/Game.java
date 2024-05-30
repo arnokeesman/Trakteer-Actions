@@ -12,18 +12,18 @@ import static dev.keesmand.trakteeractions.TrakteerActionsMod.COMMAND_QUEUE;
 
 public class Game {
     public static void handleDonation(MinecraftServer server, Donation donation) {
-        Action action = ACTION_CONFIG.getActionForDonation(donation);
         boolean offline = server.getPlayerManager().getPlayer(donation.receiver) == null;
+        Action action = ACTION_CONFIG.getActionForDonation(donation, offline);
 
-        handleAction(donation, action, offline);
+        handleAction(donation, action);
     }
 
-    private static void handleAction(Donation donation, Action action, boolean offline) {
+    private static void handleAction(Donation donation, Action action) {
         List<Action> actions = new ArrayList<>();
         addChildren(actions, action);
 
         for (Action a : actions) {
-            runCommands(donation, a, offline);
+            runCommands(donation, a);
         }
     }
 
@@ -36,12 +36,10 @@ public class Game {
         }
     }
 
-    private static void runCommands(Donation donation, Action action, boolean offline) {
-        if (!offline || action.offline) {
-            for (String command : action.commands) {
-                String parsedCommand = donation.parseString(command);
-                COMMAND_QUEUE.add(parsedCommand);
-            }
+    private static void runCommands(Donation donation, Action action) {
+        for (String command : action.commands) {
+            String parsedCommand = donation.parseString(command);
+            COMMAND_QUEUE.add(parsedCommand);
         }
     }
 }

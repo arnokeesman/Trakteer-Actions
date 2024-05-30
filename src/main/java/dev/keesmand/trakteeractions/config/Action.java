@@ -36,7 +36,7 @@ public class Action {
         this.commands = new ArrayList<>();
     }
 
-    public boolean check(Donation donation) {
-        return rules.stream().allMatch(rule -> rule.check(donation));
+    public boolean check(Donation donation, boolean offline) {
+        return (!offline || this.offline) && rules.stream().allMatch(rule -> rule.check(donation));
     }
 }

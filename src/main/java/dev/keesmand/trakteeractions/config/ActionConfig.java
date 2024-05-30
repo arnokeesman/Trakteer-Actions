@@ -13,9 +13,9 @@ public class ActionConfig {
         this.actions = actions;
     }
 
-    public Action getActionForDonation(Donation donation) {
+    public Action getActionForDonation(Donation donation, boolean offline) {
         return actions.stream()
-                .filter(action -> action.check(donation))
+                .filter(action -> action.check(donation, offline))
                 .findFirst()
                 .orElse(this.defaultAction);
     }

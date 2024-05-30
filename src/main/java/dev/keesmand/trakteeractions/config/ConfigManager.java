@@ -105,7 +105,7 @@ public class ConfigManager {
 
         // test the config for invalid checks (invalid numbers mostly)
         Donation donation = getTestDonation();
-        config.getActionForDonation(donation);
+        config.getActionForDonation(donation, false);
 
         return config;
     }
