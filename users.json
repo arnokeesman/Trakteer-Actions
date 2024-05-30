@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "name": "testuser1",
+        "name": "TestUser1",
         "apiKey": "testapi1"
     },
     {
         "id": 2,
-        "name": "testuser2",
+        "name": "TestUser2",
         "apiKey": "testapi2"
     },
     {
         "id": 3,
-        "name": "testuser3",
+        "name": "TestUser3",
         "apiKey": "testapi3"
     }
 ]

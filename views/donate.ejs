@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="stylesheet" href="/styles.css">
+    <script>
+        const units = <%- JSON.stringify(units) %>;
+    </script>
 </head>
 
 <body>
     <br>
-    <h1>Send Donation to TestUser1</h1>
-    <form id="supportForm" action="/submit" method="post">
+    <h1>Send Donation to <%= user.name %></h1>
+    <form id="supportForm" method="post">
         <label for="supporterName">Supporter Name:</label>
         <select id="supporterNameSelect" name="supporterNameSelect" onchange="toggleCustomName()">
             <option value="">Select a supporter</option>
@@ -26,30 +30,30 @@
         <label for="supportMessage">Support Message:</label>
         <input type="text" id="supportMessage" name="supportMessage" required>
 
+        <label for="unitID">Unit Name:</label>
+        <select id="unitID" name="unitID" required onchange="updateAmount()">
+            <option value="">Select a unit</option>
+            <% units.forEach(unit => { %>
+                <option value="<%= unit.id %>"><%= unit.name %> (Rp <%= unit.price %>)</option>
+            <% }) %>
+        </select>
+
         <label for="quantity">Quantity:</label>
         <div class="quantity-input">
-            <button type="button" onclick="changeQuantity(-1)">-</button>
+            <button type="button" onclick="updateAmount(-1)">-</button>
             <input type="number" id="quantity" name="quantity" value="1" min="1" required>
-            <button type="button" onclick="changeQuantity(1)">+</button>
+            <button type="button" onclick="updateAmount(1)">+</button>
         </div>
 
         <label for="amount">Amount:</label>
-        <input type="number" id="amount" name="amount" required>
+        <input type="number" id="amount" name="amount" readonly required>
 
-        <label for="unitName">Unit Name:</label>
-        <select id="unitName" name="unitName" required>
-            <option value="">Select a unit</option>
-            <option value="Cendol">Cendol</option>
-            <option value="Ketoprak">Ketoprak</option>
-            <option value="Nasi Goreng">Nasi Goreng</option>
-        </select>
-
-        <button type="submit" onclick="alert('Donation is Sent!')">Submit</button>
+        <button type="submit">Submit</button>
     </form>
     <br>
-    <a href="">back to home</a> - <a href="help.jpg" target="_blank">help</a>
+    <a href="/">back to home</a> - <a href="/help.jpg" target="_blank">help</a>
 
-    <script src="scripts.js"></script>
+    <script src="/scripts.js"></script>
 </body>
 
 </html>

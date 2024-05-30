@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Cendol",
+        "price": 1000
+    },
+    {
+        "id": 2,
+        "name": "Ketoprak",
+        "price": 1500
+    },
+    {
+        "id": 3,
+        "name": "Nasi Goreng",
+        "price": 2000
+    }
+]

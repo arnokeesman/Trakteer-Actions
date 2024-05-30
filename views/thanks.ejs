@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy Trakteer API</title>
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <br>
+    <h1>Thank you for your donation to <%= user.name %>!</h1>
+    <h2>Details:</h2>
+    <ul>
+        <li>Supporter Name: <%= supporterName %></li>
+        <li>Support Message: <%= supportMessage %></li>
+        <li>Unit Name: <%= unitName %></li>
+        <li>Quantity: <%= quantity %></li>
+        <li>Amount: <%= amount %></li>
+    </ul>
+
+    <a href="/">back to home</a> - <a href="/donate/<%= user.name %>">donate again</a>
+
+</body>

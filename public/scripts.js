@@ -10,11 +10,14 @@ function toggleCustomName() {
     }
 }
 
-function changeQuantity(amount) {
-    const quantityInput = document.getElementById('quantity');
-    const currentQuantity = parseInt(quantityInput.value);
-    const newQuantity = currentQuantity + amount;
-    if (newQuantity >= 1) {
-        quantityInput.value = newQuantity;
+function updateAmount(change) {
+    if (change) quantity.value = Math.max(1, parseInt(quantity.value) + change);
+
+    const unit = units.find(unit => unit.id == unitID.value);
+    if (!unit) {
+        amount.value = '';
+        return;
     }
+
+    amount.value = unit.price * quantity.value;
 }

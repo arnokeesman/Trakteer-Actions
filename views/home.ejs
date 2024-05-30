@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dummy Trakteer API</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
@@ -14,7 +15,12 @@
     <p>You can use this as a test for the config you make using <a
             href="https://modrinth.com/project/trakteer-actions">TrakteerMod</a>.</p>
     <ul>
-        <a href="/donate/user">
+        <% users.forEach(user => { %>
+        <a href="/donate/<%= user.name %>">
+            <li><%= user.name %> <span>(apikey: <%= user.apiKey %>)</span></li>
+        </a>
+        <% }) %>
+        <!-- <a href="/donate/user">
             <li>Test User 1 <span>(apikey: testapi1)</span></li>
         </a>
         <a href="/donate/user">
@@ -22,7 +28,7 @@
         </a>
         <a href="/donate/user">
             <li>Test User 3 <span>(apikey: testapi3)</span></li>
-        </a>
+        </a> -->
     </ul>
     <hr>
     <h2>Using Test User</h2>
