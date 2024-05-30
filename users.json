@@ -1,17 +1,17 @@
 [
     {
         "id": 1,
-        "name": "Arno",
-        "apiKey": "trapi-abc"
+        "name": "testuser1",
+        "apiKey": "testapi1"
     },
     {
         "id": 2,
-        "name": "Bert",
-        "apiKey": "trapi-def"
+        "name": "testuser2",
+        "apiKey": "testapi2"
     },
     {
         "id": 3,
-        "name": "Willy",
-        "apiKey": "trapi-ghi"
+        "name": "testuser3",
+        "apiKey": "testapi3"
     }
 ]

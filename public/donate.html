@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <br>
+    <h1>Send Donation to TestUser1</h1>
+    <form id="supportForm" action="/submit" method="post">
+        <label for="supporterName">Supporter Name:</label>
+        <select id="supporterNameSelect" name="supporterNameSelect" onchange="toggleCustomName()">
+            <option value="">Select a supporter</option>
+            <option value="supporter1">Supporter 1</option>
+            <option value="supporter2">Supporter 2</option>
+            <option value="supporter3">Supporter 3</option>
+            <option value="custom">Custom</option>
+        </select>
+        <input type="text" id="supporterName" name="supporterName" placeholder="Enter custom name"
+            style="display: none;" required>
+
+        <label for="supportMessage">Support Message:</label>
+        <input type="text" id="supportMessage" name="supportMessage" required>
+
+        <label for="quantity">Quantity:</label>
+        <div class="quantity-input">
+            <button type="button" onclick="changeQuantity(-1)">-</button>
+            <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+            <button type="button" onclick="changeQuantity(1)">+</button>
+        </div>
+
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+
+        <label for="unitName">Unit Name:</label>
+        <select id="unitName" name="unitName" required>
+            <option value="">Select a unit</option>
+            <option value="Cendol">Cendol</option>
+            <option value="Ketoprak">Ketoprak</option>
+            <option value="Nasi Goreng">Nasi Goreng</option>
+        </select>
+
+        <button type="submit" onclick="alert('Donation is Sent!')">Submit</button>
+    </form>
+    <br>
+    <a href="">back to home</a> - <a href="help.jpg" target="_blank">help</a>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>

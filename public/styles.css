@@ -1,0 +1,111 @@
+body {
+    max-width: 512px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: #e0e0e0;
+}
+
+li>a {
+    display: block;
+}
+
+li>span {
+    color: #7a7a7a;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+h1, p {
+    margin: 10px 0px;
+}
+
+img {
+    max-width: 100px;
+    margin-top: 10px;
+}
+
+code {
+    background-color: #f4f4f4;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px 0px 15px 0px;
+    border: 1px solid #ddd;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input[type="text"], input[type="number"], select {
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.quantity-input {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-input button {
+    padding: 5px 10px;
+    margin: -5px 5px 0px 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-input button:hover {
+    background-color: #e0e0e0;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}

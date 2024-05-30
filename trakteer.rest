@@ -7,4 +7,4 @@ GET http://localhost:6883/supports
 
 ### self with key
 GET http://localhost:6883/supports
-key: trapi-abc
+key: testapi1
