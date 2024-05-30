@@ -2,6 +2,7 @@ package dev.keesmand.trakteeractions.config;
 
 import dev.keesmand.trakteeractions.util.Web;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.PersistentState;
 
 import java.util.UUID;
@@ -59,7 +60,7 @@ public class UserSettings extends PersistentState {
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public NbtCompound writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         nbt.putUuid("uuid", this.uuid);
         nbt.putString("apiKey", this.apiKey);
         nbt.putBoolean("enabled", this.enabled);

@@ -99,7 +99,7 @@ public class TrakteerActionsMod implements ModInitializer {
 
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> {
             ACTION_CONFIG = null;
-            OPERATION_CONFIG.save(ConfigManager.getSettingsFile(server));
+            OPERATION_CONFIG.save(ConfigManager.getSettingsFile(server), server.getRegistryManager());
             OPERATION_CONFIG = null;
         });
 

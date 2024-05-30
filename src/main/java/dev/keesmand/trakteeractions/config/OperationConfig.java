@@ -5,6 +5,7 @@ import dev.keesmand.trakteeractions.model.OperationMode;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.PersistentState;
 
@@ -150,14 +151,14 @@ public class OperationConfig extends PersistentState {
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public NbtCompound writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         nbt.putInt("interval", interval);
         nbt.putString("mode", mode.name());
 
         NbtList userSettingList = new NbtList();
         for (UserSettings userSettings : userSettingsList) {
             NbtCompound userSettingCompound = new NbtCompound();
-            userSettings.writeNbt(userSettingCompound);
+            userSettings.writeNbt(userSettingCompound, registryLookup);
             userSettingList.add(userSettingCompound);
         }
         nbt.put("userSettings", userSettingList);
