@@ -1,6 +1,6 @@
 # Trakteer Mod
-This mod is for a Trakteer.Id intregation which is an Indonesian Company.
-[English Explanation](https://github.com/arnokeesman/Trakteer-Actions/blob/main/README.md)
+This mod is for a Trakteer.Id intregation which is an Indonesian Company
+([English Explanation](https://github.com/arnokeesman/Trakteer-Actions/blob/main/README.md)).
 
 Tutorial video bahasa Indonesia: 
 
@@ -120,4 +120,6 @@ say Pertunjukan kembang api untuk {receiver}, dari {supporter_name}!
 ## Testing API
 
 Untuk mengetest mod tanpa menggunakan real-donasi ke trakteer, kalian bisa menggunakan testing-api yang sudah kita buat. Kamu bisa menjalankan ini di komputer local kalian dan membuat config file di singleplayer. Penjelasan lengkap dan lain lain bisa di temukan di [testing-api branch](https://github.com/arnokeesman/Trakteer-Actions/tree/testing-api)
+
+
 
