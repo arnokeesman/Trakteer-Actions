@@ -1,6 +1,6 @@
 # Trakteer Mod
-
-[English](https://github.com/arnokeesman/Trakteer-Actions/blob/main/README.md)
+This mod is for a Trakteer.Id intregation which is an Indonesian Company.
+[English Explanation](https://github.com/arnokeesman/Trakteer-Actions/blob/main/README.md)
 
 Tutorial video bahasa Indonesia: 
 
@@ -67,16 +67,17 @@ Data yang bisa di gunakan dari pemberi donasi.
 | `lt`       | `<`   | Lebih Kecil               |
 
 ### Contoh config
+Action pertama `### default` tidak bisa di hilangkan, dan syntax `:offline` harus di tambahkan!
 
 ```
-### thanks_event
+### default
 :offline
 say Terimakasih, {supporter_name} donasikan {amount}!
 
 ### creeper
 :if support_message contains boom
 :if amount >= 10000
-:include thanks_event
+:include default
 execute at {receiver} run summon minecraft:creeper ~ ~ ~ {ExplosionRadius:5,ignited:1}
 say Awas, {receiver}! {supporter_name} summon Creeper!
 
@@ -107,7 +108,7 @@ say {supporter_name} memberikan {receiver} satu set diamond armor!
 
 ### fireworks
 :if amount >= 5000
-:include thanks_event
+:include default
 execute at {receiver} run summon firework_rocket ~ ~5 ~ {LifeTime:0,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Flight:2,Explosions:[{Type:1,Flicker:0,Trail:0,Colors:[I;11743532,14602026],FadeColors:[I;2437522]},{Type:1,Flicker:0,Trail:0}]}}}}
 say Pertunjukan kembang api untuk {receiver}, dari {supporter_name}!
 
