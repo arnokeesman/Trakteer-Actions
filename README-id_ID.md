@@ -27,7 +27,10 @@ Untuk mengubah status/isi dari config, gunakan `/trakteermod <optionName> <value
 
 ## Pembuatan Config
 
-Bagian ini hanya untuk Owner server atau Admin. Config bisa di reload dengan `/trakteermod reload`
+Bagian ini hanya untuk Owner server atau Admin. 
+Config bisa di reload dengan `/trakteermod reload`
+
+Kalian bisa membuat Config secara manual di text editor seperti notepad atau menggunakan [CONFIG GENERATOR](https://trakteerconfig.pages.dev/).
 
 ### Syntax
 
@@ -117,6 +120,4 @@ say Pertunjukan kembang api untuk {receiver}, dari {supporter_name}!
 ## Testing API
 
 Untuk mengetest mod tanpa menggunakan real-donasi ke trakteer, kalian bisa menggunakan testing-api yang sudah kita buat. Kamu bisa menjalankan ini di komputer local kalian dan membuat config file di singleplayer. Penjelasan lengkap dan lain lain bisa di temukan di [testing-api branch](https://github.com/arnokeesman/Trakteer-Actions/tree/testing-api)
-
-
 
