@@ -66,7 +66,7 @@ public abstract class MinecraftServerMixin {
         UserSettings userSettings = null;
         for (int i = 0; i < spread; i++) {
             if (part == 0) {
-                userSettings = readyUserSettings.get(0);
+                userSettings = readyUserSettings.getFirst();
                 break;
             }
 
