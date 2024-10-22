@@ -10,6 +10,7 @@ import dev.keesmand.trakteeractions.model.OperationMode;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Arrays;
@@ -60,7 +61,7 @@ public class Web {
     private static JsonElement executeGet(final String request_url, final String apiKey) throws IOException {
         Object ret;
 
-        URL url = new URL(request_url);
+        URL url = URI.create(request_url).toURL();
         URLConnection con = url.openConnection();
         con.setRequestProperty("key", apiKey);
         con.setRequestProperty("User-Agent", String.format("%s/%s",
