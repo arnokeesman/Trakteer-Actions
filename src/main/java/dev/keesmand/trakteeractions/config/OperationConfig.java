@@ -4,11 +4,15 @@ import dev.keesmand.trakteeractions.TrakteerActionsMod;
 import dev.keesmand.trakteeractions.model.OperationMode;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtIo;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.PersistentState;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -163,5 +167,15 @@ public class OperationConfig extends PersistentState {
         }
         nbt.put("userSettings", userSettingList);
         return nbt;
+    }
+
+    public void save(File settingsFile, DynamicRegistryManager.Immutable registryManager) {
+        NbtCompound data = this.toNbt(registryManager);
+
+        try {
+            NbtIo.writeCompressed(data, settingsFile.toPath());
+        } catch (IOException e) {
+            TrakteerActionsMod.LOGGER.error("Could not save data {}", this, e);
+        }
     }
 }
